@@ -2,4 +2,10 @@
 <resources>
 
     <style name="Theme.TMDB" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.SplashScreen.MySplash">
+        <item name="windowSplashScreenBackground">#FFFFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/tmdb_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.TMDB</item>
+    </style>
 </resources>
