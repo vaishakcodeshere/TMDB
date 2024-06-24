@@ -1,4 +1,4 @@
-package com.tmdbapp.tmdb
+package com.tmdbapp.tmdb.utils
 
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource

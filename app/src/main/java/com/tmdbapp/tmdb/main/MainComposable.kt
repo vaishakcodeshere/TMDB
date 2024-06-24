@@ -16,7 +16,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.tmdbapp.tmdb.NoRippleInteractionSource
+import com.tmdbapp.tmdb.utils.NoRippleInteractionSource
 import com.tmdbapp.tmdb.home.HomeView
 import com.tmdbapp.tmdb.ui.theme.BottomBarSelectedItem
 import com.tmdbapp.tmdb.ui.theme.BottomBarUnSelectedItem
