@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.jetbrains.kotlin.kapt)
+
 }
 
 android {
@@ -49,6 +52,14 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true // Required by hilt
+}
+
+hilt {
+    enableAggregatingTask = true
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -61,6 +72,15 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.splashscreen)
     implementation(libs.androidx.navigation.compose)
+
+    // Hilt
+    implementation(libs.dagger.hiltAndroid)
+    kapt(libs.dagger.hiltCompiler)
+    androidTestImplementation(libs.dagger.hiltAndroidTesting)
+    kaptAndroidTest(libs.dagger.hiltCompiler)
+    testImplementation(libs.dagger.hiltAndroidTesting)
+    kaptTest(libs.dagger.hiltCompiler)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
