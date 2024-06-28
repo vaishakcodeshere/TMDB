@@ -1,9 +1,15 @@
 package com.tmdbapp.tmdb.home
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -17,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tmdbapp.tmdb.R
@@ -64,5 +71,30 @@ fun HomeView(modifier: Modifier = Modifier) {
             },
             value = searchTextState,
             onValueChange = { value -> searchTextState = value })
+
+        TopCollection()
+    }
+}
+
+@Preview
+@Composable
+fun TopCollection() {
+    Column(modifier = Modifier.padding(top = 24.dp)) {
+        LazyRow {
+            items(count = 10) {
+                Card(modifier = Modifier
+                    .padding(end = 15.dp)
+                    .width(145.dp)
+                    .height(210.dp)) {
+                    Image(
+                        painter = painterResource(id = R.drawable.dummy_image),
+                        contentDescription = "topImage",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight()
+                    )
+                }
+            }
+        }
     }
 }
