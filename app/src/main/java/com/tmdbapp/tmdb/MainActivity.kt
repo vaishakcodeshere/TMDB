@@ -27,7 +27,6 @@ class MainActivity : ComponentActivity() {
                         navHostController = navController
                     )
                 }) { innerPadding ->
-                    //todo add dummy text data
                     Box(modifier = Modifier.padding(innerPadding)) {
                         NavigationGraph(navHostController = navController)
                     }
