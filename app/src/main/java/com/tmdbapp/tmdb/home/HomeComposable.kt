@@ -2,6 +2,7 @@ package com.tmdbapp.tmdb.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,6 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -51,7 +54,9 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun HomeView(modifier: Modifier = Modifier) {
-    Column(modifier = Modifier.padding(start = 24.dp, end = 24.dp, top = 42.dp)) {
+
+    Column(modifier = Modifier.
+    padding(start = 24.dp, end = 24.dp, top = 42.dp)) {
         Text(
             text = "What do you want to watch?",
             fontFamily = poppinsFamily,
@@ -100,22 +105,28 @@ fun TopCollection() {
     Column(modifier = Modifier.padding(top = 24.dp)) {
         LazyRow {
             items(count = 10) {
-                Card(
-                    modifier = Modifier
-                        .padding(end = 15.dp)
-                        .width(145.dp)
-                        .height(210.dp)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.dummy_image),
-                        contentDescription = "topImage",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .fillMaxHeight()
-                    )
-                }
+                ImageCardView()
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun ImageCardView() {
+    Card(
+        modifier = Modifier
+            .padding(end = 15.dp)
+            .width(145.dp)
+            .height(210.dp)
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.dummy_image),
+            contentDescription = "topImage",
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+        )
     }
 }
 
@@ -156,7 +167,7 @@ fun TabLayout() {
                     },
                     selected = pagerState.currentPage == index,
                     onClick = {
-                        scope.launch{
+                        scope.launch {
                             pagerState.animateScrollToPage(index)
                         }
                     },
@@ -166,10 +177,36 @@ fun TabLayout() {
 
         }
 
-        HorizontalPager(state = pagerState, modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp)) { index ->
-            Text(text = "$index")
+        HorizontalPager(
+            state = pagerState, modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp)
+        ) { index ->
+            PagerContent()
+        }
+    }
+}
+
+@Preview
+@Composable
+fun PagerContent() {
+    LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 100.dp)) {
+        items(count = 10) {
+            Card(
+                modifier = Modifier
+                    .width(100.dp)
+                    .height(145.dp)
+                    .background(AppBackground)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.dummy_image),
+                    contentDescription = "topImage",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                        .background(AppBackground)
+                )
+            }
         }
     }
 }
