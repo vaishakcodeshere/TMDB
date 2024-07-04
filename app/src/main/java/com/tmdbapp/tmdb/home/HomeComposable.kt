@@ -99,7 +99,7 @@ fun HomeView(modifier: Modifier = Modifier) {
                         text = {
                             Text(
                                 text = title,
-                                fontSize = 14.sp,
+                                fontSize = 16.sp,
                                 fontFamily = poppinsFamily,
                                 fontWeight = FontWeight.Normal
                             )
@@ -204,7 +204,7 @@ fun ImageCardView() {
 @Composable
 fun PagerContent() {
     val approxColum = 20 / 4
-    val heightInt: Int = 180 * approxColum
+    val heightInt: Int = 145 * approxColum
     LazyVerticalGrid(
         modifier = Modifier.height(heightInt.dp),
         columns = GridCells.Adaptive(minSize = 120.dp)
