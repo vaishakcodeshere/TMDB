@@ -203,16 +203,18 @@ fun ImageCardView() {
 @Preview
 @Composable
 fun PagerContent() {
-    val approxColum = 10 / 3
-    val heightInt: Int = ( 100 * approxColum) + 500
+    val totalItemCount = 32
+    val approxColum = (totalItemCount / 3) + 1
+    val approxHeightOfItem = 160
+    val heightInt: Int = approxHeightOfItem * approxColum
     LazyVerticalGrid(
         modifier = Modifier.height(heightInt.dp),
         columns = GridCells.Fixed(3)
     ) {
-        items(count = 20) {
+        items(count = totalItemCount) {
             Card(
                 modifier = Modifier
-                    .height(100.dp)
+                    .height(approxHeightOfItem.dp)
                     .width(400.dp)
                     .background(Color.Transparent)
                     .padding(5.dp)
