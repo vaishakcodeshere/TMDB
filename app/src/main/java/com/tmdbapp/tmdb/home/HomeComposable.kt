@@ -130,18 +130,21 @@ fun HomeView(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun TextSearchComposable() {
+    val paddingModifier = Modifier.padding(start = 15.dp, end = 15.dp)
     Text(
         text = "What do you want to watch?",
         fontFamily = poppinsFamily,
         fontWeight = FontWeight.SemiBold,
         color = Color.White,
-        fontSize = 18.sp
+        fontSize = 18.sp,
+        modifier = paddingModifier
     )
     var searchTextState by remember { mutableStateOf("") }
 
     TextField(modifier = Modifier
-        .padding(top = 24.dp)
-        .fillMaxWidth(),
+        .padding(top = 24.dp, end = 15.dp, start = 15.dp)
+        .fillMaxWidth()
+        .height(60.dp),
         shape = RoundedCornerShape(size = 30.dp),
         colors = TextFieldDefaults.colors(
             focusedContainerColor = SearchStroke,
@@ -156,12 +159,15 @@ fun TextSearchComposable() {
                 fontFamily = poppinsFamily,
                 fontWeight = FontWeight.Normal,
                 fontSize = 14.sp,
-                color = SearchPlaceHolder
+                color = SearchPlaceHolder,
+                modifier = Modifier.padding(start = 15.dp)
             )
         },
         trailingIcon = {
             Icon(
-                painter = painterResource(id = R.drawable.search), contentDescription = "search"
+                painter = painterResource(id = R.drawable.search),
+                contentDescription = "search",
+                modifier = Modifier.padding(end = 15.dp)
             )
         },
         value = searchTextState,
