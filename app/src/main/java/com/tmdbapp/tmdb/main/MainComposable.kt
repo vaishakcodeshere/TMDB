@@ -1,5 +1,7 @@
 package com.tmdbapp.tmdb.main
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -18,8 +20,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.tmdbapp.tmdb.utils.NoRippleInteractionSource
 import com.tmdbapp.tmdb.home.HomeView
+import com.tmdbapp.tmdb.search.SearchView
 import com.tmdbapp.tmdb.ui.theme.BottomBarSelectedItem
 import com.tmdbapp.tmdb.ui.theme.BottomBarUnSelectedItem
+import com.tmdbapp.tmdb.wishlist.WishListView
 
 
 @Composable
@@ -74,15 +78,30 @@ fun BottomBar(
 
 @Composable
 fun NavigationGraph(navHostController: NavHostController) {
-    NavHost(navHostController, startDestination = BottomBarData.Home.route) {
+    NavHost(
+        navController = navHostController,
+        startDestination = BottomBarData.Home.route,
+        enterTransition = {
+            EnterTransition.None
+        },
+        exitTransition = {
+            ExitTransition.None
+        },
+        popExitTransition = {
+            ExitTransition.None
+        },
+        popEnterTransition = {
+            EnterTransition.None
+        }
+    ) {
         composable(BottomBarData.Home.route) {
             HomeView()
         }
         composable(BottomBarData.Search.route) {
-            HomeView()
+            SearchView()
         }
         composable(BottomBarData.WatchList.route) {
-            HomeView()
+            WishListView()
         }
     }
 }
